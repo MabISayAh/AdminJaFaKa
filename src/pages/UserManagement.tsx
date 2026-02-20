@@ -1,0 +1,177 @@
+import React, { useState } from 'react';
+import { Search, Bell, User, ChevronDown } from 'lucide-react';
+
+export interface UserAccount {
+  id: string;
+  name: string;
+  email: string;
+  role: 'Admin' | 'Manager' | 'Super Admin' | 'Staff';
+  contact: string;
+  status: 'Active' | 'Inactive';
+  lastLogin: string;
+}
+
+const UserManagement: React.FC = () => {
+  const [statusFilter, setStatusFilter] = useState('Active');
+  const [roleFilter, setRoleFilter] = useState('All');
+  const [isStatusOpen, setIsStatusOpen] = useState(false);
+  const [isRoleOpen, setIsRoleOpen] = useState(false);
+
+  // Mock Data matching the User Management design
+  const users: UserAccount[] = [
+    { id: '1', name: 'Aliyah Segovia', email: 'asegovia@gmail.com', role: 'Admin', contact: '09123456789', status: 'Active', lastLogin: '10 Oct, 2025' },
+    { id: '2', name: 'Maverick Verdida', email: 'mverdida@gmail.com', role: 'Manager', contact: '09123456789', status: 'Active', lastLogin: '10 Oct, 2025' },
+    { id: '3', name: 'Russell Palcoto', email: 'rpalcoto@gmail.com', role: 'Super Admin', contact: '09123456789', status: 'Active', lastLogin: '10 Oct, 2025' },
+    { id: '4', name: 'Rose Pajarito', email: 'rpajarito@gmail.com', role: 'Staff', contact: '09123456789', status: 'Active', lastLogin: '10 Oct, 2025' },
+    { id: '5', name: 'Venelyn Cordova', email: 'vcordova@gmail.com', role: 'Staff', contact: '09123456789', status: 'Active', lastLogin: '10 Oct, 2025' },
+    { id: '6', name: 'Joan Sibayan', email: 'jsibayan@gmail.com', role: 'Staff', contact: '09123456789', status: 'Active', lastLogin: '10 Oct, 2025' },
+  ];
+
+  return (
+    <div className="p-8">
+      {/* 1. Top Navbar */}
+      <div className="flex justify-between items-center mb-8 w-full">
+        <div className="flex items-center gap-8 flex-1">
+          <h1 className="text-xl font-semibold text-[#0f172a]">Users</h1>
+          <div className="relative flex-1 max-w-xl group">
+            <span className="absolute inset-y-0 right-4 flex items-center text-[#6F757E] pointer-events-none group-focus-within:text-[#DF2025]">
+              <Search size={18} />
+            </span>
+            <input
+              type="text"
+              placeholder="Search..."
+              className="w-full pr-10 pl-4 py-2 bg-white border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-[#DF2025] shadow-sm"
+            />
+          </div>
+        </div>
+
+        <div className="flex items-center gap-4 ml-8">
+          <button className="p-2 text-[#050F24] hover:text-[#DF2025]">
+            <Bell size={24} />
+          </button>
+          <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center cursor-pointer hover:ring-2 hover:ring-[#DF2025] overflow-hidden">
+            <User size={20} className="text-gray-700" />
+          </div>
+        </div>
+      </div>
+
+      {/* 2. User Management Card */}
+      <div className="bg-white rounded-3xl border border-[#E1E1E1] shadow-sm p-8">
+        <div className="flex justify-between items-start mb-8">
+          <div className="max-w-2xl">
+            <h2 className="text-xl font-bold text-[#050F24]">User Management</h2>
+            <p className="text-gray-400 text-sm mt-1 leading-relaxed">
+              All registered users are listed below with their respective roles and account statuses. Click on a specific user to view or edit their details, manage access permissions, or update account information.
+            </p>
+          </div>
+          
+          <div className="flex gap-4 items-end">
+            {/* Status Filter (Active/Inactive) */}
+            <div className="relative">
+              <label className="block text-xs font-medium text-[#DF2025] mb-2 font-semibold">Status</label>
+              <button 
+                onClick={() => { setIsStatusOpen(!isStatusOpen); setIsRoleOpen(false); }}
+                className="flex items-center justify-between gap-8 px-6 py-2 border border-[#DF2025] text-[#DF2025] rounded-full font-medium min-w-[140px]"
+              >
+                {statusFilter} <ChevronDown size={18} className={isStatusOpen ? 'rotate-180' : ''} />
+              </button>
+              {isStatusOpen && (
+                <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-100 rounded-2xl shadow-xl z-50 overflow-hidden">
+                  {['All', 'Active', 'Inactive'].map((status) => (
+                    <button 
+                      key={status}
+                      className={`w-full text-left px-6 py-3 text-sm hover:bg-gray-50 ${status === statusFilter ? 'text-[#DF2025]' : 'text-[#6F757E]'}`}
+                      onClick={() => { setStatusFilter(status); setIsStatusOpen(false); }}
+                    >
+                      {status}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Role Filter (Admin/Manager/Clerk) */}
+            <div className="relative">
+              <label className="block text-xs font-medium text-[#DF2025] mb-2 font-semibold">Role</label>
+              <button 
+                onClick={() => { setIsRoleOpen(!isRoleOpen); setIsStatusOpen(false); }}
+                className="flex items-center justify-between gap-8 px-6 py-2 border border-[#DF2025] text-[#DF2025] rounded-full font-medium min-w-[140px]"
+              >
+                {roleFilter} <ChevronDown size={18} className={isRoleOpen ? 'rotate-180' : ''} />
+              </button>
+              {isRoleOpen && (
+                <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-100 rounded-2xl shadow-xl z-50 overflow-hidden">
+                  {['All', 'Admin', 'Manager', 'Clerk'].map((role) => (
+                    <button 
+                      key={role}
+                      className={`w-full text-left px-6 py-3 text-sm hover:bg-gray-50 ${role === roleFilter ? 'text-[#DF2025]' : 'text-[#6F757E]'}`}
+                      onClick={() => { setRoleFilter(role); setIsRoleOpen(false); }}
+                    >
+                      {role}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Add New User Button */}
+            <button className="bg-[#DF2025] text-white px-6 py-3 rounded-2xl font-semibold hover:bg-[#b3191d] transition-colors h-[44px] flex items-center">
+              Add new user
+            </button>
+          </div>
+        </div>
+
+        {/* 3. Users Table */}
+        <div className="overflow-x-auto">
+          <table className="w-full text-left">
+            <thead>
+              <tr className="text-[#050F24] font-semibold border-b border-gray-100">
+                <th className="pb-6 pl-4">Staff</th>
+                <th className="pb-6 px-4">Role</th>
+                <th className="pb-6 px-4">Contact</th>
+                <th className="pb-6 px-4 text-center">Status</th>
+                <th className="pb-6 px-4">Last Login</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-50">
+              {users.map((userAccount) => (
+                <tr key={userAccount.id} className="group hover:bg-gray-50 transition-colors">
+                  <td className="py-6 pl-4 flex items-center gap-4">
+                    <div className="w-12 h-12 bg-gray-100 rounded-full overflow-hidden shrink-0">
+                      <div className="w-12 h-12 bg-gray-200 rounded-full shrink-0" />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-[#050F24]">{userAccount.name}</p>
+                      <p className="text-xs text-gray-400">{userAccount.email}</p>
+                    </div>
+                  </td>
+                  <td className="py-6 px-4 text-[#6F757E] font-medium">{userAccount.role}</td>
+                  <td className="py-6 px-4 text-[#6F757E]">{userAccount.contact}</td>
+                  <td className="py-6 px-4">
+                    <div className="flex justify-center items-center gap-2 font-medium text-[#6F757E]">
+                      <div className="w-2 h-2 rounded-full bg-[#27D095]" />
+                      {userAccount.status}
+                    </div>
+                  </td>
+                  <td className="py-6 px-4 text-[#6F757E]">{userAccount.lastLogin}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        {/* 4. Pagination Section */}
+        <div className="flex justify-between items-center mt-8 pt-8 border-t border-gray-100">
+          <p className="text-gray-400 text-sm">Showing 7 of 57 orders</p>
+          <div className="flex gap-2 items-center">
+            <button className="text-gray-400 px-4 hover:text-[#DF2025]">Prev</button>
+            <button className="w-10 h-10 rounded-full bg-[#DF2025] text-white font-bold">1</button>
+            <button className="w-10 h-10 rounded-full bg-gray-100 text-gray-400 hover:bg-gray-200">2</button>
+            <button className="text-[#DF2025] px-4 font-medium">Next</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default UserManagement;
