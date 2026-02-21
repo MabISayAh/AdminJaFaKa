@@ -5,7 +5,7 @@ import OrderStatusChart from '../components/dashboard/OrderStatusChart';
 import ProductTable from '../components/dashboard/ProductTable';
 import CustomerList from '../components/dashboard/CustomerList';
 import BranchSalesChart from '../components/dashboard/BranchSalesChart';
-import { ShoppingCart, Clock, AlertTriangle, TrendingUp, Search, Bell, User } from 'lucide-react';
+import { ShoppingCart, Clock, AlertTriangle, TrendingUp, Search, Bell, CircleUserRound } from 'lucide-react';
 
 interface RevenueItem { name: string; facebook: number; website: number; }
 interface StatusItem { name: string; value: number; color: string; }
@@ -47,14 +47,20 @@ const branchData: BranchItem[] = [
 
 const Dashboard: React.FC = () => {
   return (
-    <>
-      {/* Top Navbar */}
+    <div className="p-0">
+      {/* Header */}
       <div className="flex justify-between items-center mb-8 w-full">
-        <div className="flex items-center gap-8 flex-1">
-          <h1 className="text-xl font-semibold text-[#0f172a]">Dashboard</h1>
+        <div className="flex items-center flex-1">
+          
+          {/* Gap between title and search bar */}
+          <div className="w-35 shrink-0">
+            <h1 className="text-xl font-semibold text-[#0f172a]">Dashboard</h1>
+          </div>
+
+          {/* Search Bar */}
           <div className="relative flex-1 max-w-xl group">
-            <span className="absolute inset-y-0 right-4 flex items-center text-[#6F757E] pointer-events-none group-focus-within:text-[#DF2025] transition-colors">
-              <Search size={18} />
+            <span className="absolute inset-y-0 right-4 flex items-center text-[#6F757E] pointer-events-none group-focus-within:text-[#DF2025] transition-colors overflow-hidden">
+              <Search size={18} strokeWidth={2.5}/>
             </span>
             <input
               type="text"
@@ -64,12 +70,13 @@ const Dashboard: React.FC = () => {
           </div>
         </div>
 
+        {/* Notif and User */}
         <div className="flex items-center gap-4 ml-8">
-          <button className="p-2 text-[#050F24] hover:text-[#DF2025] transition-colors" aria-label="Notifications">
-            <Bell size={24} />
+          <button className="p-2 text-[#050F24] hover:text-[#DF2025] transition-colors overflow-hidden">
+            <Bell size={25} />
           </button>
-          <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center cursor-pointer hover:ring-2 hover:ring-[#DF2025] transition-all overflow-hidden">
-            <User size={20} className="text-gray-700" />
+          <div className="flex items-center justify-center cursor-pointer hover:text-[#DF2025] transition-all overflow-hidden">
+            <CircleUserRound size={28} strokeWidth={1.75} />
           </div>
         </div>
       </div>
@@ -87,14 +94,14 @@ const Dashboard: React.FC = () => {
         <div className="xl:col-span-1"><OrderStatusChart data={statusData} /></div>
       </div>
 
-      <div className="grid grid-cols-1 xl:grid-cols-3 gap-8 pb-8">
+      <div className="grid grid-cols-1 xl:grid-cols-3 gap-8 pb-3">
         <div className="xl:col-span-2"><ProductTable products={productData} /></div>
         <div className="xl:col-span-1 space-y-8">
           <CustomerList customers={customerData} />
           <BranchSalesChart data={branchData} />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
