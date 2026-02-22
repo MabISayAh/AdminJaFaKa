@@ -192,7 +192,7 @@ const UserManagement: React.FC = () => {
         {/* 4. Pagination Section */}
         <div className="flex flex-col sm:flex-row justify-between items-center mt-auto pt-6 px-6 gap-4 border-t border-gray-100">
           <span className="text-xs font-normal text-[#6F757E]">
-            Showing 7 of 7 products
+            Showing 7 of 7 users
           </span>
           <div className="flex items-center gap-2">
             <button className="px-2 text-[#6F757E] text-xs font-normal hover:text-[#DF2025] hover:underline">Prev</button>
