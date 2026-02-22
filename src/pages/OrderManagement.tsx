@@ -93,7 +93,8 @@ const OrderManagement: React.FC = () => {
             <div className="relative">
               <button 
                 onClick={() => setIsFilterOpen(!isFilterOpen)}
-                className={`flex items-center justify-between w-45 px-6 py-2 border-2 border-[#DF2025] rounded-full font-medium hover:bg-[#DF2025] hover:text-white transition-colors overflow-hidden ${
+                className={`flex items-center justify-between w-45 px-6 py-2 border-2 border-[#DF2025] rounded-full font-normal hover:bg-[#DF2025] hover:text-white transition-colors overflow-hidden 
+                  ${
                   isFilterOpen 
                     ? 'bg-[#DF2025] text-white' 
                     : 'text-[#DF2025]'
@@ -126,18 +127,17 @@ const OrderManagement: React.FC = () => {
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="text-[#050F24] font-semibold border-b border-gray-100">
-                <th className="pb-4 pl-8 font-semibold text-left w-[25%]">Customer</th>
-                <th className="pb-4 px-4 font-semibold text-center w-[18%]">Order ID</th>
-                <th className="pb-4 px-4 font-semibold text-center w-[18%]">Product</th>
-                <th className="pb-4 px-4 font-semibold text-center w-[18%]">Date</th>
-                <th className="pb-4 px-4 font-semibold text-center w-[18%]">Status</th>
-                <th className="pb-4 px-8 font-semibold text-center w-[18%]">Revenue</th>
+                <th className="pb-4 pl-8 font-semibold text-left w-[19%]">Customer</th>
+                <th className="pb-4 px-4 font-semibold text-center w-[19%]">Order ID</th>
+                <th className="pb-4 px-4 font-semibold text-center w-[19%]">Product</th>
+                <th className="pb-4 px-4 font-semibold text-center w-[13%]">Date</th>
+                <th className="pb-4 px-4 font-semibold text-center w-[25%]">Status</th>
+                <th className="pb-4 pr-8 font-semibold text-center w-[5%]">Revenue</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
               {orders.map((order) => (
                 <tr key={order.id} className="group hover:bg-gray-50 transition-colors">
-                  
                   <td className="py-4 pl-8 flex items-center gap-3">
                     <div className="w-10 h-10 bg-gray-200 rounded-full overflow-hidden shrink-0" />
                     <div>
@@ -145,9 +145,9 @@ const OrderManagement: React.FC = () => {
                       <p className="text-xs font-normal text-gray-400">{order.customerEmail}</p>
                     </div>
                   </td>
-                  <td className="py-4 px-4 text-[#6F757E] text-center">{order.orderId}</td>
-                  <td className="py-4 px-4 text-[#6F757E] text-center">{order.product}</td>
-                  <td className="py-4 px-4 text-[#6F757E] text-center">{order.date}</td>
+                  <td className="py-4 px-4 text-[#6F757E] font-normal text-center">{order.orderId}</td>
+                  <td className="py-4 px-4 text-[#6F757E] font-normal text-center">{order.product}</td>
+                  <td className="py-4 px-4 text-[#6F757E] font-normal text-center">{order.date}</td>
                   <td className="py-4 px-4 text-center">
                     <span className={`flex items-center justify-center gap-2 w-fit mx-auto px-3 py-1 rounded-full text-sm font-medium ${getStatusColor(order.status)}`}>
                       {/* Yung bilog sa status */}
@@ -161,7 +161,7 @@ const OrderManagement: React.FC = () => {
                       {order.status}
                     </span>
                   </td>
-                  <td className="py-4 px-8 font-normal text-[#6F757E] text-center">₱{order.revenue}</td>
+                  <td className="py-4 pr-8 text-[#6F757E] font-normal text-center">₱{order.revenue}</td>
                 </tr>
               ))}
             </tbody>
