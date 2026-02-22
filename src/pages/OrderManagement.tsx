@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Calendar, SlidersVertical, Search, Bell, User } from 'lucide-react';
+import { Calendar, SlidersVertical, Search, Bell, CircleUserRound } from 'lucide-react';
 
 export interface Order {
   id: string;
@@ -62,14 +62,14 @@ const OrderManagement: React.FC = () => {
         </div>
 
             {/* Notif and User */}
-          <div className="flex items-center gap-4 ml-8">
-            <button className="p-2 text-[#050F24] hover:text-[#DF2025] transition-colors overflow-hidden">
-              <Bell size={24} />
-            </button>
-            <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center cursor-pointer hover:ring-2 hover:ring-[#DF2025] transition-all overflow-hidden">
-              <User size={20} className="text-gray-700" />
-            </div>
+            <div className="flex items-center gap-4 ml-8">
+              <button className="p-2 text-[#050F24] hover:text-[#DF2025] transition-colors overflow-hidden">
+                <Bell size={25} />
+              </button>
+            <div className="flex items-center justify-center cursor-pointer hover:text-[#DF2025] transition-all overflow-hidden">
+            <CircleUserRound size={28} strokeWidth={1.75} />
           </div>
+        </div>
       </div>
 
       {/* Order Management Card */}
