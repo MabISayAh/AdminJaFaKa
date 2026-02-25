@@ -2,11 +2,16 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
 import Dashboard from './pages/Dashboard';
 import OrderManagement from './pages/OrderManagement';
+import ViewOrder from './components/ordermanage/ViewOrder';
 import ProductManagement from './pages/ProductManagement'; 
 import InquiryManagement from './pages/InquiryManagement';
 import UserManagement from './pages/UserManagement';
-import ViewOrder from './components/ordermanage/ViewOrder';
-import ViewInquiry from './components/ViewInquiry';
+import InventoryManagement from './pages/InventoryManagement';
+import ProductLog from './pages/inventory/ProductLog';
+import AdjustmentForm from './pages/inventory/AdjustmentForm';
+import BatchConsumption from './pages/inventory/BatchConsumption';
+import ViewAdjustment from './pages/inventory/ViewAdjustment';
+
 // Sa taas mo iimport ^
 
 function App() {
@@ -18,9 +23,9 @@ function App() {
           backgroundImage: `url('/background.png')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          backgroundAttachment: 'fixed',
+          backgroundAttachment: 'fixed', 
           backgroundRepeat: 'no-repeat'
-        }}
+        }} 
       />
 
       <div className="flex relative z-10 w-full">
@@ -36,19 +41,29 @@ function App() {
             <Route path="/products" element={<ProductManagement />} />
             <Route path="/inquiries" element={<InquiryManagement />} />
             <Route path="/users" element={<UserManagement />} />
+            <Route path="/inventory" element={<InventoryManagement />} />
             {/* Dashboard */}
             {/* Order */}
             <Route path="/orders/:orderId" element={<ViewOrder />} />
             <Route path="/orders" element={<OrderManagement />} />
             {/* Product */}
             {/* Inventory */}
+            <Route path="/inventory/:id" element={<ProductLog />} />
+            <Route path="/inventory/:id/adjustment" element={<AdjustmentForm />} />
+            <Route path="/inventory/:id/batch-consumption" element={<BatchConsumption />} />
+            <Route path="/inventory/:id/view-adjustment" element={<ViewAdjustment />} />
             {/* Sales */}
             {/* Inquiry */}
-            <Route path="/inventory" element={<ViewInquiry />} />
             {/* Users */}
             {/* Settings */}
 
             <Route path="*" element={<Navigate to="/" replace />} />
+            <Route path="/inventory" element={<InventoryManagement />} />
+            <Route path="/inventory/:id" element={<ProductLog />} />
+            <Route path="/inventory/:id/adjustment" element={<AdjustmentForm />} />
+            <Route path="/inventory/:id/batch-consumption" element={<BatchConsumption />} />
+            <Route path="/inventory/:id/view-adjustment" element={<ViewAdjustment />} />
+      
           </Routes>
         </main>
       </div>

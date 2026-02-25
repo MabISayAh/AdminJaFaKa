@@ -101,10 +101,10 @@ const branchData: BranchItem[] = [
 
       {/* Grid Layouts */}
       <div className="flex flex-wrap gap-6 mb-8">
-        <MetricCard title="Total Orders" value="57" color="bg-[#4BD278]" icon={ShoppingCart} />
-        <MetricCard title="Pending Orders" value="8" color="bg-[#20B2DF]" icon={Clock} />
-        <MetricCard title="Low Stock" value="25" color="bg-[#FF8E29]" icon={AlertTriangle} />
-        <MetricCard title="Revenue" value="35k" color="bg-[#DF2025]" icon={TrendingUp} />
+        <MetricCard title="Total Orders" value="57" color="bg-[#4BD278]" icon={ShoppingCart} showView={true} viewPath="/orders" />
+        <MetricCard title="Pending Orders" value="8" color="bg-[#20B2DF]" icon={Clock} showView={true} viewPath="/orders"/>
+        <MetricCard title="Low Stock" value="25" color="bg-[#FF8E29]" icon={AlertTriangle} showView={true} viewPath="/inventory"/>
+        <MetricCard title="Revenue" value="35k" color="bg-[#DF2025]" icon={TrendingUp} showView={true} viewPath="/reports"/>
       </div>
 
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-8 mb-8">
