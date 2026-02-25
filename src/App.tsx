@@ -5,6 +5,8 @@ import OrderManagement from './pages/OrderManagement';
 import ProductManagement from './pages/ProductManagement'; 
 import InquiryManagement from './pages/InquiryManagement';
 import UserManagement from './pages/UserManagement';
+import ViewOrder from './components/ordermanage/ViewOrder';
+
 // Sa taas mo iimport ^
 
 function App() {
@@ -30,6 +32,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/orders" element={<OrderManagement />} />
+            <Route path="/orders/:orderId" element={<ViewOrder />} />
             <Route path="/products" element={<ProductManagement />} />
             <Route path="/inquiries" element={<InquiryManagement />} />
             <Route path="/users" element={<UserManagement />} />

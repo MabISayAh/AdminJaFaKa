@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import MetricCard from '../components/dashboard/MetricCard';
 import RevenueChart from '../components/dashboard/RevenueChart';
 import OrderStatusChart from '../components/dashboard/OrderStatusChart';
@@ -12,6 +12,9 @@ interface StatusItem { name: string; value: number; color: string; }
 interface ProductItem { name: string; type: string; orders: number; price: number; category: string; refunds: string; }
 interface CustomerItem { name: string; location: string; }
 interface BranchItem { name: string; value: number; color: string; }
+
+const Dashboard: React.FC = () => {
+  const [activeButton, setActiveButton] = useState<string | null>(null);
 
 // --- Mock Data ---
 const revenueData: RevenueItem[] = [
@@ -45,7 +48,6 @@ const branchData: BranchItem[] = [
   { name: 'Bulangon', value: 30, color: '#DF2025' },
 ];
 
-const Dashboard: React.FC = () => {
   return (
     <div className="p-0">
       {/* Header */}
@@ -70,14 +72,30 @@ const Dashboard: React.FC = () => {
           </div>
         </div>
 
-        {/* Notif and User */}
-        <div className="flex items-center gap-4 ml-8">
-          <button className="p-2 text-[#050F24] hover:text-[#DF2025] transition-colors overflow-hidden">
-            <Bell size={25} />
+        <div className="flex items-center gap-2 ml-8">
+          {/* Bell Button */}
+          <button 
+            onClick={() => setActiveButton(activeButton === 'bell' ? null : 'bell')}
+            className={`p-1.5 rounded-full transition-all overflow-hidden ${
+              activeButton === 'bell' 
+                ? 'bg-[#DF2025] text-white' 
+                : 'text-[#050F24] hover:bg-gray-200'
+            }`}
+          >
+            <Bell size={24} />
           </button>
-          <div className="flex items-center justify-center cursor-pointer hover:text-[#DF2025] transition-all overflow-hidden">
-            <CircleUserRound size={28} strokeWidth={1.75} />
-          </div>
+
+          {/* User Button */}
+          <button 
+            onClick={() => setActiveButton(activeButton === 'user' ? null : 'user')}
+            className={`p-1.5 rounded-full transition-all overflow-hidden ${
+              activeButton === 'user' 
+                ? 'bg-[#DF2025] text-white' 
+                : 'text-[#050F24] hover:bg-gray-200'
+            }`}
+          >
+            <CircleUserRound size={27} strokeWidth={1.75} />
+          </button>
         </div>
       </div>
 

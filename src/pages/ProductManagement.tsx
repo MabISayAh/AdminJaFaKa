@@ -13,7 +13,7 @@ export interface Product {
 }
 
 const ProductManagement: React.FC = () => {
-  // 1. State Management - Consolidated from your two declarations
+  const [activeButton, setActiveButton] = useState<string | null>(null);
   const [categoryFilter, setCategoryFilter] = useState('All');
   const [statusFilter, setStatusFilter] = useState('All');
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
@@ -63,14 +63,30 @@ const ProductManagement: React.FC = () => {
           </div>
         </div>
 
-            {/* Notif and User */}
-            <div className="flex items-center gap-4 ml-8">
-              <button className="p-2 text-[#050F24] hover:text-[#DF2025] transition-colors overflow-hidden">
-                <Bell size={25} />
-              </button>
-            <div className="flex items-center justify-center cursor-pointer hover:text-[#DF2025] transition-all overflow-hidden">
-            <CircleUserRound size={28} strokeWidth={1.75} />
-          </div>
+        <div className="flex items-center gap-2 ml-8">
+          {/* Bell Button */}
+          <button 
+            onClick={() => setActiveButton(activeButton === 'bell' ? null : 'bell')}
+            className={`p-1.5 rounded-full transition-all overflow-hidden ${
+              activeButton === 'bell' 
+                ? 'bg-[#DF2025] text-white' 
+                : 'text-[#050F24] hover:bg-gray-200'
+            }`}
+          >
+            <Bell size={24} />
+          </button>
+
+          {/* User Button */}
+          <button 
+            onClick={() => setActiveButton(activeButton === 'user' ? null : 'user')}
+            className={`p-1.5 rounded-full transition-all overflow-hidden ${
+              activeButton === 'user' 
+                ? 'bg-[#DF2025] text-white' 
+                : 'text-[#050F24] hover:bg-gray-200'
+            }`}
+          >
+            <CircleUserRound size={27} strokeWidth={1.75} />
+          </button>
         </div>
       </div>
 

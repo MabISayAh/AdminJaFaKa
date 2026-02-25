@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Calendar, SlidersVertical, Search, Bell, CircleUserRound } from 'lucide-react';
 
 export interface Order {
@@ -13,6 +14,8 @@ export interface Order {
 }
 
 const OrderManagement: React.FC = () => {
+  const [activeButton, setActiveButton] = useState<string | null>(null);
+  const navigate = useNavigate();
   const [filterStatus, setFilterStatus] = useState('All');
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
@@ -61,14 +64,30 @@ const OrderManagement: React.FC = () => {
           </div>
         </div>
 
-            {/* Notif and User */}
-            <div className="flex items-center gap-4 ml-8">
-              <button className="p-2 text-[#050F24] hover:text-[#DF2025] transition-colors overflow-hidden">
-                <Bell size={25} />
-              </button>
-            <div className="flex items-center justify-center cursor-pointer hover:text-[#DF2025] transition-all overflow-hidden">
-            <CircleUserRound size={28} strokeWidth={1.75} />
-          </div>
+        <div className="flex items-center gap-2 ml-8">
+          {/* Bell Button */}
+          <button 
+            onClick={() => setActiveButton(activeButton === 'bell' ? null : 'bell')}
+            className={`p-1.5 rounded-full transition-all overflow-hidden ${
+              activeButton === 'bell' 
+                ? 'bg-[#DF2025] text-white' 
+                : 'text-[#050F24] hover:bg-gray-200'
+            }`}
+          >
+            <Bell size={24} />
+          </button>
+
+          {/* User Button */}
+          <button 
+            onClick={() => setActiveButton(activeButton === 'user' ? null : 'user')}
+            className={`p-1.5 rounded-full transition-all overflow-hidden ${
+              activeButton === 'user' 
+                ? 'bg-[#DF2025] text-white' 
+                : 'text-[#050F24] hover:bg-gray-200'
+            }`}
+          >
+            <CircleUserRound size={27} strokeWidth={1.75} />
+          </button>
         </div>
       </div>
 
@@ -137,7 +156,9 @@ const OrderManagement: React.FC = () => {
             </thead>
             <tbody className="divide-y divide-gray-100">
               {orders.map((order) => (
-                <tr key={order.id} className="group hover:bg-gray-50 transition-colors">
+                <tr key={order.id} 
+                onClick={() => navigate(`/orders/${order.orderId}`)}
+                className="group hover:bg-gray-50 transition-colors cursor-pointer">
                   <td className="py-4 pl-8 flex items-center gap-3">
                     <div className="w-10 h-10 bg-gray-200 rounded-full overflow-hidden shrink-0" />
                     <div>

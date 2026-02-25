@@ -65,7 +65,7 @@ const Sidebar: React.FC = () => {
               className={`flex items-center cursor-pointer transition-all duration-200 w-full h-16
                 ${isActive 
                   ? 'bg-[#DF2025] text-white' 
-                  : 'text-[#050F24] hover:bg-[#DF2025] hover:text-white'
+                  : 'text-[#050F24] hover:bg-gray-100'
                 }`}
             >
               <div className="w-20 min-w-[80px] flex justify-center items-center shrink-0">
