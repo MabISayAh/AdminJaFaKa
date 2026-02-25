@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Bell, CircleUserRound, ChevronDown, SlidersVertical } from 'lucide-react';
+import { ArrowLeft, Bell, CircleUserRound, ChevronDown } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const ViewInquiry: React.FC = () => {
@@ -53,8 +53,8 @@ const ViewInquiry: React.FC = () => {
             <h2 className="text-xl font-semibold text-[#050F24] mb-6">Message Details</h2>
             <div className="grid grid-cols-2 gap-x-12 gap-y-4 max-w-2xl">
               <div className="flex gap-4">
-                <span className="text-[#6F757E] w-20">Name:</span>
-                <span className="text-[#050F24]">Venelyn Mae Cordova</span>
+                <span className="text-[#6F757E] font-normal w-20">Name:</span>
+                <span className="text-[#050F24] font-normal">Jennie Rubyjane Katigbak</span>
               </div>
               <div className="flex gap-4">
                 <span className="text-[#6F757E] w-20">Date:</span>
@@ -62,7 +62,7 @@ const ViewInquiry: React.FC = () => {
               </div>
               <div className="flex gap-4">
                 <span className="text-[#6F757E] w-20">Email:</span>
-                <span className="text-[#050F24]">vmcordova@gmail.com</span>
+                <span className="text-[#050F24]">jennierubyjane@gmail.com</span>
               </div>
               <div className="flex gap-4">
                 <span className="text-[#6F757E] w-20">Time:</span>
@@ -70,33 +70,40 @@ const ViewInquiry: React.FC = () => {
               </div>
               <div className="flex gap-4">
                 <span className="text-[#6F757E] w-20">Contact:</span>
-                <span className="text-[#050F24]">09123456789</span>
+                <span className="text-[#050F24]">09127296749</span>
               </div>
             </div>
           </div>
 
           {/* Status Picker */}
           <div className="relative">
-            <button 
-              onClick={() => setIsStatusOpen(!isStatusOpen)}
-              className="flex items-center justify-between w-40 px-6 py-2 border border-[#DF2025] rounded-full text-[#DF2025] font-normal hover:bg-red-50 transition-colors"
-            >
-              <span>{currentStatus}</span>
-              <SlidersVertical size={16} />
-            </button>
+              <button 
+                onClick={() => setIsStatusOpen(!isStatusOpen)}
+                className={`flex items-center justify-between w-45 px-6 py-2 border-2 border-[#DF2025] rounded-full font-normal hover:bg-[#DF2025] hover:text-white transition-colors overflow-hidden 
+                  ${
+                  isStatusOpen 
+                    ? 'bg-[#DF2025] text-white' 
+                    : 'text-[#DF2025]'
+                }`}
+              >
+                {currentStatus}
+                <div className="flex flex-col scale-75">
+                  <ChevronDown size={24} className={isStatusOpen ? 'rotate-180' : ''} />
+                </div>
+              </button>
 
-            {isStatusOpen && (
-              <div className="absolute right-0 mt-2 w-40 bg-white border border-gray-100 rounded-2xl shadow-xl z-50 overflow-hidden">
-                {statusOptions.map((status) => (
-                  <button 
-                    key={status}
-                    className="w-full text-left px-6 py-3 text-sm hover:bg-gray-50 text-[#6F757E] hover:text-[#DF2025]"
-                    onClick={() => { setCurrentStatus(status); setIsStatusOpen(false); }}
-                  >
-                    {status}
-                  </button>
-                ))}
-              </div>
+              {isStatusOpen && (
+                <div className="absolute right-0 mt-2 w-45 bg-white border border-gray-100 rounded-2xl shadow-xl z-50 overflow-hidden">
+                  {statusOptions.map((status) => (
+                    <button 
+                      key={status}
+                      className={`w-full text-left px-6 py-3 text-sm hover:bg-gray-50 text-[#6F757E] hover:text-[#DF2025]`}
+                      onClick={() => { setCurrentStatus(status); setIsStatusOpen(false); }}
+                    >
+                      {status}
+                    </button>
+                  ))}
+                </div>
             )}
           </div>
         </div>
@@ -105,15 +112,18 @@ const ViewInquiry: React.FC = () => {
         <div className="mb-10">
           <h3 className="text-lg font-semibold text-[#050F24] mb-4">Message Content</h3>
           <div className="bg-white border border-gray-100 rounded-3xl p-8 shadow-sm">
-            <h4 className="text-lg font-semibold text-[#050F24] mb-6">Inquiry About Marble Countertop Availability</h4>
+            <h4 className="text-lg font-medium text-[#050F24] mb-6">Lorem Ipsum</h4>
             <div className="text-[#050F24] leading-relaxed space-y-4">
-              <p>Good day! I'm interested in your Calacatta Gold Marble Countertop. I saw it listed under your Stone Collection, but I'd like to ask if it's still available for a 3-meter kitchen installation. Could you please provide the following details:</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+                labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+                laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
               <ul className="list-disc ml-6 space-y-1">
-                <li>Current price per square meter</li>
-                <li>Estimated delivery time to Quezon City</li>
-                <li>Installation service options (if available)</li>
+                <li>Lorem ipsum dolor sit amet</li>
+                <li>Lorem ipsum dolor sit amet</li>
+                <li>Lorem ipsum dolor sit amet</li>
               </ul>
-              <p>Also, do you offer bulk discounts for contractors? Thank you very much for your assistance.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
             </div>
           </div>
         </div>
@@ -124,23 +134,17 @@ const ViewInquiry: React.FC = () => {
           <div className="relative">
             <textarea 
               placeholder="Type response here...."
-              className="w-full h-64 bg-[#F8F9FA] border border-gray-200 rounded-3xl p-6 focus:outline-none focus:ring-1 focus:ring-gray-300 resize-none transition-all"
+              className="w-full h-64 bg-[#F5F5F5] border border-gray-200 rounded-3xl p-6 focus:outline-none focus:ring-1 focus:ring-gray-300 resize-none transition-all"
             />
           </div>
         </div>
 
-        {/* Action Buttons */}
+        {/* Button */}
         <div className="flex justify-end gap-4 pt-4">
-          <button 
-            onClick={() => navigate('/inquiries')}
-            className="px-8 py-2.5 rounded-full border border-gray-200 text-[#6F757E] hover:bg-gray-50 transition-colors"
-          >
-            Cancel
-          </button>
-          <button 
+          <button onClick={() => navigate('/inquiries')}
             className="px-8 py-2.5 rounded-full bg-[#DF2025] text-white hover:bg-[#b3191d] transition-colors"
           >
-            Send Response
+          Send Message
           </button>
         </div>
       </div>
