@@ -6,7 +6,7 @@ import ProductManagement from './pages/ProductManagement';
 import InquiryManagement from './pages/InquiryManagement';
 import UserManagement from './pages/UserManagement';
 import ViewOrder from './components/ordermanage/ViewOrder';
-
+import ViewInquiry from './components/ViewInquiry';
 // Sa taas mo iimport ^
 
 function App() {
@@ -44,6 +44,7 @@ function App() {
             {/* Inventory */}
             {/* Sales */}
             {/* Inquiry */}
+            <Route path="/inventory" element={<ViewInquiry />} />
             {/* Users */}
             {/* Settings */}
 
