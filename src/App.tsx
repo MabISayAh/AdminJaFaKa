@@ -39,6 +39,7 @@ function App() {
             {/* Dashboard */}
             {/* Order */}
             <Route path="/orders/:orderId" element={<ViewOrder />} />
+            <Route path="/orders" element={<OrderManagement />} />
             {/* Product */}
             {/* Inventory */}
             {/* Sales */}
