@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Calendar, Search, Bell, CircleUserRound, SlidersVertical } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 export interface Inquiry {
   id: string;
@@ -14,6 +15,7 @@ const InquiryManagement: React.FC = () => {
   const [activeButton, setActiveButton] = useState<string | null>(null);
   const [filterStatus, setFilterStatus] = useState('All');
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const navigate = useNavigate();
 
   // Mock data tailored for the Inquiries page
   const inquiries: Inquiry[] = [
@@ -149,7 +151,9 @@ const InquiryManagement: React.FC = () => {
             </thead>
             <tbody className="divide-y divide-gray-50">
               {inquiries.map((inquiry) => (
-                <tr key={inquiry.id} className="group hover:bg-gray-50 transition-colors">
+                <tr key={inquiry.id} 
+                onClick={() => navigate(`/inquiries/${inquiry.id}`)}
+                className="group hover:bg-gray-50 transition-colors">
                   <td className="py-4 pl-8 flex items-center gap-3">
                     <div className="w-10 h-10 bg-gray-200 rounded-full overflow-hidden shrink-0" />
                     <div>

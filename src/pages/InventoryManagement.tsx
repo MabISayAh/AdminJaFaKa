@@ -2,9 +2,10 @@ import React from "react";
 import MetricCard from '../components/dashboard/MetricCard';
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import { Search, Bell, User, BookMarked, AlertTriangle, CircleSlash2, Calendar} from 'lucide-react';
+import { Search, Bell, CircleUserRound, BookMarked, AlertTriangle, CircleSlash2, Calendar} from 'lucide-react';
 
 const InventoryManagement: React.FC = () => {
+const [activeButton, setActiveButton] = useState<string | null>(null);
   const products = [
     { id: 1, name: "Product Name", type: "Product Type", quantity: 150, latestInbound: "Mar 25, 2025" },
     { id: 2, name: "Product Name", type: "Product Type", quantity: 80, latestInbound: "Jan 17, 2025" },
@@ -20,33 +21,53 @@ const InventoryManagement: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-      <div className="p-8">
-        {/* 1. Top Navbar */}
+      <div className="p-0">
+          {/* Header */}
         <div className="flex justify-between items-center mb-8 w-full">
-          <div className="flex items-center gap-8 flex-1">
-            <h1 className="text-xl font-semibold text-[#0f172a]">Inventory</h1>
+          <div className="flex items-center flex-1">
+            
+            {/* Gap between title and search bar */}
+            <div className="w-35 shrink-0">
+              <h1 className="text-xl font-semibold text-[#0f172a]">Inventory</h1>
+            </div>
+
+            {/* Search Bar */}
             <div className="relative flex-1 max-w-xl group">
-              <span className="absolute inset-y-0 right-4 flex items-center text-[#6F757E] pointer-events-none group-focus-within:text-[#DF2025]">
-                <Search size={18} />
+              <span className="absolute inset-y-0 right-4 flex items-center text-[#6F757E] pointer-events-none group-focus-within:text-[#DF2025] transition-colors overflow-hidden">
+                <Search size={18} strokeWidth={2.5} />
               </span>
               <input
                 type="text"
                 placeholder="Search..."
-                className="w-full pr-10 pl-4 py-2 bg-white border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-[#DF2025] shadow-sm"
+                className="w-full pr-10 pl-4 py-2 bg-white border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-[#DF2025] transition-all shadow-sm"
               />
             </div>
           </div>
-  
-          <div className="flex items-center gap-4 ml-8">
-            <button
-              onClick={() => setIsBellActive(!isBellActive)}
-              className={`p-2 rounded-full transition-all duration-200 
-              ${isBellActive ? "bg-[#DF2025] text-white" : "text-[#050F24] hover:text-[#DF2025]"} `}>
+
+          <div className="flex items-center gap-2 ml-8">
+            {/* Bell Button */}
+            <button 
+              onClick={() => setActiveButton(activeButton === 'bell' ? null : 'bell')}
+              className={`p-1.5 rounded-full transition-all overflow-hidden ${
+                activeButton === 'bell' 
+                  ? 'bg-[#DF2025] text-white' 
+                  : 'text-[#050F24] hover:bg-gray-200'
+              }`}
+            >
               <Bell size={24} />
-          </button>
-            <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center cursor-pointer hover:ring-2 hover:ring-[#DF2025] overflow-hidden">
-              <User size={20} className="text-gray-700" />
-            </div>
+            </button>
+
+            {/* User Button */}
+            <button 
+              onClick={() => setActiveButton(activeButton === 'user' ? null : 'user')}
+              className={`p-1.5 rounded-full transition-all overflow-hidden ${
+                activeButton === 'user' 
+                  ? 'bg-[#DF2025] text-white' 
+                  : 'text-[#050F24] hover:bg-gray-200'
+              }`}
+            >
+              <CircleUserRound size={27} strokeWidth={1.75} />
+            </button>
           </div>
         </div>
 

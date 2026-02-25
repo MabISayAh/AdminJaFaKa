@@ -2,15 +2,22 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
 import Dashboard from './pages/Dashboard';
 import OrderManagement from './pages/OrderManagement';
-import ViewOrder from './components/ordermanage/ViewOrder';
 import ProductManagement from './pages/ProductManagement'; 
 import InquiryManagement from './pages/InquiryManagement';
 import UserManagement from './pages/UserManagement';
 import InventoryManagement from './pages/InventoryManagement';
-import ProductLog from './pages/inventory/ProductLog';
-import AdjustmentForm from './pages/inventory/AdjustmentForm';
-import BatchConsumption from './pages/inventory/BatchConsumption';
-import ViewAdjustment from './pages/inventory/ViewAdjustment';
+
+// Order
+import ViewOrder from './components/ordermanage/ViewOrder';
+
+// Inventory
+import ProductLog from './components/inventorymanage/ProductLog';
+import AdjustmentForm from './components/inventorymanage/AdjustmentForm';
+import BatchConsumption from './components/inventorymanage/BatchConsumption';
+import ViewAdjustment from './components/inventorymanage/ViewAdjustment';
+
+// Inquiry
+import ViewInquiry from './components/inquirymanage/ViewInquiry';
 
 // Sa taas mo iimport ^
 
@@ -54,16 +61,10 @@ function App() {
             <Route path="/inventory/:id/view-adjustment" element={<ViewAdjustment />} />
             {/* Sales */}
             {/* Inquiry */}
+            <Route path="/inquiries/:inquiryId" element={<ViewInquiry />} />
             {/* Users */}
             {/* Settings */}
-
             <Route path="*" element={<Navigate to="/" replace />} />
-            <Route path="/inventory" element={<InventoryManagement />} />
-            <Route path="/inventory/:id" element={<ProductLog />} />
-            <Route path="/inventory/:id/adjustment" element={<AdjustmentForm />} />
-            <Route path="/inventory/:id/batch-consumption" element={<BatchConsumption />} />
-            <Route path="/inventory/:id/view-adjustment" element={<ViewAdjustment />} />
-      
           </Routes>
         </main>
       </div>
