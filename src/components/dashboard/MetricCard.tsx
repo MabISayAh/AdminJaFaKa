@@ -1,14 +1,20 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import type { LucideIcon } from 'lucide-react';
 
 interface MetricCardProps {
   title: string;
   value: string | number; 
   color: string;         
-  icon: LucideIcon;       
+  icon: LucideIcon; 
+  showView?: boolean;    
+  viewPath?: string;
 }
 
-const MetricCard: React.FC<MetricCardProps> = ({ title, value, color, icon: Icon }) => (
+const MetricCard: React.FC<MetricCardProps> = ({ title, value, color, icon: Icon, showView, viewPath }) => {
+  const navigate = useNavigate();
+
+  return (
   <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 flex-1 min-w-[220px]">
     <div className="flex items-center gap-4">
       <div className={`${color} p-4 rounded-xl text-white shadow-md flex-shrink-0`}>
@@ -17,12 +23,16 @@ const MetricCard: React.FC<MetricCardProps> = ({ title, value, color, icon: Icon
       <div className="min-w-0">
         <p className="text-[#050F24] text-sm font-semibold truncate">{title}</p>
         <h3 className="text-sm text-[#6F757E] truncate">{value}</h3>
-        <button className="text-[#DF2025] text-xs font-semibold mt-1 hover:underline cursor-pointer">
+       {showView && viewPath && (
+         <button  onClick={() => navigate(viewPath)}
+            className="text-sm text-[#DF2025] hover:underline">
           View
         </button>
+       )}
       </div>
     </div>
   </div>
 );
+};
 
 export default MetricCard;
