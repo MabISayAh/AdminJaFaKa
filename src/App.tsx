@@ -6,6 +6,8 @@ import ProductManagement from './pages/ProductManagement';
 import InquiryManagement from './pages/InquiryManagement';
 import UserManagement from './pages/UserManagement';
 import InventoryManagement from './pages/InventoryManagement';
+import SalesReport from './pages/SalesReport';
+import SystemSetting from './pages/SystemSetting';
 
 // Order
 import ViewOrder from './components/ordermanage/ViewOrder';
@@ -49,6 +51,8 @@ function App() {
             <Route path="/inquiries" element={<InquiryManagement />} />
             <Route path="/users" element={<UserManagement />} />
             <Route path="/inventory" element={<InventoryManagement />} />
+            <Route path="/reports" element={<SalesReport />} />
+            <Route path="/settings" element={<SystemSetting />} />
             {/* Dashboard */}
             {/* Order */}
             <Route path="/orders/:orderId" element={<ViewOrder />} />
