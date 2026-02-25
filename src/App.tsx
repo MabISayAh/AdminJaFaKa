@@ -30,12 +30,22 @@ function App() {
         {/* import mo muna sa taas */}
         <main className="ml-20 flex-1 p-8 min-h-screen">
           <Routes>
+            {/* Sidebar */}
             <Route path="/" element={<Dashboard />} />
             <Route path="/orders" element={<OrderManagement />} />
-            <Route path="/orders/:orderId" element={<ViewOrder />} />
             <Route path="/products" element={<ProductManagement />} />
             <Route path="/inquiries" element={<InquiryManagement />} />
             <Route path="/users" element={<UserManagement />} />
+            {/* Dashboard */}
+            {/* Order */}
+            <Route path="/orders/:orderId" element={<ViewOrder />} />
+            {/* Product */}
+            {/* Inventory */}
+            {/* Sales */}
+            {/* Inquiry */}
+            {/* Users */}
+            {/* Settings */}
+
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>
