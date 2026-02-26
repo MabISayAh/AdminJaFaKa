@@ -9,14 +9,17 @@ const AdjustmentForm: React.FC = () => {
   const [activeButton, setActiveButton] = useState<string | null>(null);
 
   return (
-     <div className="p-0">
+    <div className="p-0">
       {/* Header */}
       <div className="flex justify-between items-center mb-8 w-full">
         <div className="flex items-center flex-1">
-          <button onClick={() => navigate("/inventory/:id")}
-                    className="p-1.5 hover:bg-gray-200 rounded-full transition-colors">
-                      <ArrowLeft size={24} className="text-[#050F24]" />
-                    </button>
+          <button 
+            onClick={() => navigate("/inventory/:id")}
+            className="p-1.5 hover:bg-gray-200 rounded-full transition-colors"
+          >
+            <ArrowLeft size={24} className="text-[#050F24]" />
+          </button>
+          
           {/* Gap between title and search bar */}
           <div className="w-35 pl-5 shrink-0">
             <h1 className="text-xl font-semibold text-[#0f172a]">Inventory</h1>
@@ -62,116 +65,116 @@ const AdjustmentForm: React.FC = () => {
         </div>
       </div>
 
-      {/* Header */}
+      {/* Form Container */}
       <div className="mt-8 bg-[#FFFFFF] rounded-2xl p-6 border border-gray-200">
         <div className="flex justify-between items-start mb-6">
-        <div>
-          <h1 className="text-xl font-semibold text-[#0F172A]">
-            Adjustment Form
-          </h1>
-          <p className="text-sm text-gray-400 mt-2 max-w-xl">
-            Record any changes to product stock by filling out the adjustment
-            details below. Ensure all required fields are completed for accurate
-            inventory tracking.
-          </p>
-        </div>
-
-        <div className="flex gap-4">
-          <button onClick={() => navigate("/inventory")}
-            className="bg-[#DF2025] text-white px-6 py-2 rounded-full font-semibold hover:bg-[#b3191d] transition">
-            Save
-          </button>
-          <button
-            onClick={() => navigate(`/inventory/${id}/view-adjustment`)}
-            className="bg-[#DF2025] text-white px-6 py-2 rounded-full font-semibold hover:bg-[#b3191d] transition"
-          >
-            View
-          </button>
-        </div>
-      </div>
-
-      {/* Adjustment Information Card */}
-      <div className="bg-white rounded-2xl border border-gray-200 p-8 mb-8">
-        <h2 className="text-lg font-semibold text-[#0F172A] mb-6">
-          Adjustment Information
-        </h2>
-
-        <div className="grid grid-cols-2 gap-6">
-
-          <input
-            type="text"
-            placeholder="Selected Product Name"
-            className="bg-gray-100 rounded-full px-4 py-3 outline-none"
-          />
-
-          <input
-            type="text"
-            placeholder="Current Stock Display"
-            className="bg-gray-100 rounded-full px-4 py-3 outline-none"
-          />
-
-          <select className="bg-gray-100 rounded-full px-4 py-3 outline-none text-gray-500">
-            <option>Adjustment Type</option>
-            <option>Add Stock</option>
-            <option>Deduct Stock</option>
-          </select>
-
-          <input
-            type="number"
-            placeholder="Quantity to Adjust"
-            className="bg-gray-100 rounded-full px-4 py-3 outline-none text-gray-500"
-          />
-
-          <select className="bg-gray-100 rounded-full px-4 py-3 outline-none text-gray-500">
-            <option>Batch ID</option>
-            <option>LOT-2025-JAN-001</option>
-            <option>LOT-2025-FEB-002</option>
-            <option>LOT-2025-MAR-003</option>
-            <option>LOT-2025-APR-004</option>
-            <option>LOT-2025-MAY-005</option>
-            <option>LOT-2025-JUN-006</option>
-            <option>LOT-2025-JUL-007</option>
-            <option>LOT-2025-AUG-008</option>
-            <option>LOT-2025-SEP-009</option>
-            
-          </select>
-
-          <input
-            type="text"
-            placeholder="Adjusted by (auto-filled)"
-            className="bg-gray-100 rounded-full px-4 py-3 outline-none"
-          />
-        </div>
-
-        <textarea
-          placeholder="Type reason/notes here (optional)..."
-          className="mt-6 w-full bg-gray-100 rounded-2xl px-4 py-4 outline-none resize-none"
-          rows={4}
-        />
-      </div>
-
-      {/* Supporting Document Upload */}
-      <div className="bg-white rounded-2xl border border-gray-200 p-8">
-        <h2 className="text-lg font-semibold text-[#0F172A] mb-6">
-          Supporting Document Upload (Optional)
-        </h2>
-
-        <div className="border-2 border-dashed border-red-300 rounded-2xl p-12 flex flex-col items-center justify-center text-center">
-          <div className="w-12 h-12 bg-[#DF2025] text-white flex items-center justify-center rounded-full mb-4">
-            <Upload size={20} />
+          <div>
+            <h1 className="text-xl font-semibold text-[#0F172A]">
+              Adjustment Form
+            </h1>
+            <p className="text-sm text-gray-400 mt-2 max-w-xl">
+              Record any changes to product stock by filling out the adjustment
+              details below. Ensure all required fields are completed for accurate
+              inventory tracking.
+            </p>
           </div>
-          <p className="text-sm text-gray-600">
-            Drop your files here or{" "}
-            <span className="text-[#DF2025] font-semibold cursor-pointer">
-              Browse
-            </span>
-          </p>
-          <p className="text-xs text-gray-400 mt-2">
-            Support: JPG, JPEG, PNG, PDF, DOC, DOCX, XLS, XLSX
-          </p>
+
+          <div className="flex gap-4">
+            <button 
+              onClick={() => navigate("/inventory")}
+              className="bg-[#DF2025] text-white px-6 py-2 rounded-full font-semibold hover:bg-[#b3191d] transition"
+            >
+              Save
+            </button>
+            <button
+              onClick={() => navigate(`/inventory/${id}/view-adjustment`)}
+              className="bg-[#DF2025] text-white px-6 py-2 rounded-full font-semibold hover:bg-[#b3191d] transition"
+            >
+              View
+            </button>
+          </div>
+        </div>
+
+        {/* Adjustment Information Card */}
+        <div className="bg-white rounded-2xl border border-gray-200 p-8 mb-8">
+          <h2 className="text-lg font-semibold text-[#0F172A] mb-6">
+            Adjustment Information
+          </h2>
+
+          <div className="grid grid-cols-2 gap-6">
+            <input
+              type="text"
+              placeholder="Selected Product Name"
+              className="bg-gray-100 rounded-full px-4 py-3 outline-none"
+            />
+
+            <input
+              type="text"
+              placeholder="Current Stock Display"
+              className="bg-gray-100 rounded-full px-4 py-3 outline-none"
+            />
+
+            <select className="bg-gray-100 rounded-full px-4 py-3 outline-none text-gray-500">
+              <option>Adjustment Type</option>
+              <option>Add Stock</option>
+              <option>Deduct Stock</option>
+            </select>
+
+            <input
+              type="number"
+              placeholder="Quantity to Adjust"
+              className="bg-gray-100 rounded-full px-4 py-3 outline-none text-gray-500"
+            />
+
+            <select className="bg-gray-100 rounded-full px-4 py-3 outline-none text-gray-500">
+              <option>Batch ID</option>
+              <option>LOT-2025-JAN-001</option>
+              <option>LOT-2025-FEB-002</option>
+              <option>LOT-2025-MAR-003</option>
+              <option>LOT-2025-APR-004</option>
+              <option>LOT-2025-MAY-005</option>
+              <option>LOT-2025-JUN-006</option>
+              <option>LOT-2025-JUL-007</option>
+              <option>LOT-2025-AUG-008</option>
+              <option>LOT-2025-SEP-009</option>
+            </select>
+
+            <input
+              type="text"
+              placeholder="Adjusted by (auto-filled)"
+              className="bg-gray-100 rounded-full px-4 py-3 outline-none"
+            />
+          </div>
+
+          <textarea
+            placeholder="Type reason/notes here (optional)..."
+            className="mt-6 w-full bg-gray-100 rounded-2xl px-4 py-4 outline-none resize-none"
+            rows={4}
+          />
+        </div>
+
+        {/* Supporting Document Upload */}
+        <div className="bg-white rounded-2xl border border-gray-200 p-8">
+          <h2 className="text-lg font-semibold text-[#0F172A] mb-6">
+            Supporting Document Upload (Optional)
+          </h2>
+
+          <div className="border-2 border-dashed border-red-300 rounded-2xl p-12 flex flex-col items-center justify-center text-center">
+            <div className="w-12 h-12 bg-[#DF2025] text-white flex items-center justify-center rounded-full mb-4">
+              <Upload size={20} />
+            </div>
+            <p className="text-sm text-gray-600">
+              Drop your files here or{" "}
+              <span className="text-[#DF2025] font-semibold cursor-pointer">
+                Browse
+              </span>
+            </p>
+            <p className="text-xs text-gray-400 mt-2">
+              Support: JPG, JPEG, PNG, PDF, DOC, DOCX, XLS, XLSX
+            </p>
+          </div>
         </div>
       </div>
-</div>
     </div>
   );
 };

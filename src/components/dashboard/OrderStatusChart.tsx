@@ -34,19 +34,16 @@ const OrderStatusChart: React.FC<OrderStatusChartProps> = ({ data }) => (
         </PieChart>
       </ResponsiveContainer>
       
-      {/* Center Number with bold styling */}
       <div className="absolute inset-0 flex items-center justify-center">
         <span className="text-3xl font-bold text-[#050F24]">64</span>
       </div>
     </div>
 
-    {/* Legend Section with Conditional Borders */}
     <div className="mt-4 space-y-2">
       {data.map((item, i) => (
         <div 
           key={i} 
           className={`flex justify-between text-sm text-[#6F757E] pb-1 ${
-            /* Removes the line below the final item */
             i !== data.length - 1 ? 'border-b border-gray-200' : ''
           }`}
         >

@@ -21,7 +21,9 @@ import ViewAdjustment from './components/inventorymanage/ViewAdjustment';
 // Inquiry
 import ViewInquiry from './components/inquirymanage/ViewInquiry';
 
-// Sa taas mo iimport ^
+// User
+import EditUser from './components/usermanage/EditUser';
+import AddUser from './components/usermanage/AddUser';
 
 function App() {
   return (
@@ -39,9 +41,6 @@ function App() {
 
       <div className="flex relative z-10 w-full">
         <Sidebar />
-              
-        {/* para maconnect yung page sa mga buttons ng sidebar */}
-        {/* import mo muna sa taas */}
         <main className="ml-20 flex-1 p-8 min-h-screen">
           <Routes>
             {/* Sidebar */}
@@ -53,20 +52,25 @@ function App() {
             <Route path="/inventory" element={<InventoryManagement />} />
             <Route path="/reports" element={<SalesReport />} />
             <Route path="/settings" element={<SystemSetting />} />
-            {/* Dashboard */}
+
             {/* Order */}
             <Route path="/orders/:orderId" element={<ViewOrder />} />
+
             {/* Product */}
+
             {/* Inventory */}
             <Route path="/inventory/:id" element={<ProductLog />} />
             <Route path="/inventory/:id/adjustment" element={<AdjustmentForm />} />
             <Route path="/inventory/:id/batch-consumption" element={<BatchConsumption />} />
             <Route path="/inventory/:id/view-adjustment" element={<ViewAdjustment />} />
-            {/* Sales */}
+            
             {/* Inquiry */}
             <Route path="/inquiries/:inquiryId" element={<ViewInquiry />} />
+
             {/* Users */}
-            {/* Settings */}
+            <Route path="/users/add" element={<AddUser />} />
+            <Route path="/users/edit/:userId" element={<EditUser />} />
+
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>

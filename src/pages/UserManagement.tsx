@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Search, Bell, CircleUserRound, SlidersVertical } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 export interface UserAccount {
   id: string;
@@ -20,13 +21,14 @@ const getStatusColor = (status: string) => {
   };
 
 const UserManagement: React.FC = () => {
+  const navigate = useNavigate();
   const [activeButton, setActiveButton] = useState<string | null>(null);
   const [statusFilter, setStatusFilter] = useState('All');
   const [roleFilter, setRoleFilter] = useState('All');
   const [isStatusOpen, setIsStatusOpen] = useState(false);
   const [isRoleOpen, setIsRoleOpen] = useState(false);
 
-  // Mock Data matching the User Management design
+  // Mock Data
   const users: UserAccount[] = [
     { id: '1', name: 'Aliyah Segovia', email: 'asegovia@gmail.com', role: 'Admin', contact: '09123456789', status: 'Active', lastLogin: '10 Oct, 2025' },
     { id: '2', name: 'Maverick Verdida', email: 'mverdida@gmail.com', role: 'Manager', contact: '09123456789', status: 'Inactive', lastLogin: '10 Oct, 2025' },
@@ -88,7 +90,7 @@ const UserManagement: React.FC = () => {
         </div>
       </div>
 
-      {/* 2. User Management Card */}
+      {/* User Management Card */}
       <div className="bg-white rounded-3xl border border-[#E1E1E1] shadow-sm p-8">
         <div className="flex justify-between items-start mb-8">
           <div>
@@ -158,14 +160,15 @@ const UserManagement: React.FC = () => {
             </div>
 
             {/* Add New User Button */}
-            <button className= "flex items-center justify-center gap-3 bg-[#DF2025] w-45 h-11 text-white px-6 py-3 rounded-full font-normal hover:bg-[#b3191d] transition-colors">
+            <button onClick={() => navigate('/users/add')} 
+            className= "flex items-center justify-center gap-3 bg-[#DF2025] w-45 h-11 text-white px-6 py-3 rounded-full font-normal hover:bg-[#b3191d] transition-colors">
             Add new user
             </button>
           </div>
         </div>
 
         <div className="mt-8 border border-gray-200 rounded-[32px] pb-8 pt-8 pl-0 pr-0 shadow-sm bg-white">
-        {/* 3. Users Table */}
+        {/* Users Table */}
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
@@ -179,7 +182,9 @@ const UserManagement: React.FC = () => {
             </thead>
             <tbody className="divide-y divide-gray-50">
               {users.map((userAccount) => (
-                <tr key={userAccount.id} className="group hover:bg-gray-50 transition-colors">
+                <tr key={userAccount.id} 
+                onClick={() => navigate(`/users/edit/${userAccount.id}`)}
+                className="group hover:bg-gray-50 transition-colors">
                   <td className="py-4 pl-8 flex items-center gap-4">
                     <div className="w-10 h-10 bg-gray-200 rounded-full overflow-hidden shrink-0" />
                     <div>
@@ -206,7 +211,8 @@ const UserManagement: React.FC = () => {
             </tbody>
           </table>
         </div>
-        {/* 4. Pagination Section */}
+        
+        {/* Pagination Section */}
         <div className="flex flex-col sm:flex-row justify-between items-center mt-auto pt-6 px-6 gap-4 border-t border-gray-100">
           <span className="text-xs font-normal text-[#6F757E]">
             Showing 7 of 7 users

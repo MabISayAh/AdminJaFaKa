@@ -25,6 +25,7 @@ const ViewInquiry: React.FC = () => {
         </div>
 
         <div className="flex items-center gap-2 ml-8">
+        {/* Bell Button */}
           <button 
             onClick={() => setActiveButton(activeButton === 'bell' ? null : 'bell')}
             className={`p-1.5 rounded-full transition-all ${
@@ -33,6 +34,8 @@ const ViewInquiry: React.FC = () => {
           >
             <Bell size={24} />
           </button>
+
+        {/* User Button */}
           <button 
             onClick={() => setActiveButton(activeButton === 'user' ? null : 'user')}
             className={`p-1.5 rounded-full transition-all ${
@@ -88,7 +91,10 @@ const ViewInquiry: React.FC = () => {
               >
                 {currentStatus}
                 <div className="flex flex-col scale-75">
-                  <ChevronDown size={24} className={isStatusOpen ? 'rotate-180' : ''} />
+                  <ChevronDown 
+                    size={24} 
+                    className={`transition-transform duration-300 ${isStatusOpen ? 'rotate-180' : ''}`} 
+                  />
                 </div>
               </button>
 
@@ -111,19 +117,28 @@ const ViewInquiry: React.FC = () => {
         {/* Message Content Section */}
         <div className="mb-10">
           <h3 className="text-lg font-semibold text-[#050F24] mb-4">Message Content</h3>
-          <div className="bg-white border border-gray-100 rounded-3xl p-8 shadow-sm">
-            <h4 className="text-lg font-medium text-[#050F24] mb-6">Lorem Ipsum</h4>
-            <div className="text-[#050F24] leading-relaxed space-y-4">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
-                labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
-                laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+          
+          <div className="bg-white border border-gray-200 rounded-3xl shadow-sm overflow-hidden">
+            {/* Message Title */}
+            <div className="border-b border-gray-200 p-8 pb-6">
+              <h4 className="text-lg font-medium text-[#050F24]">
+                Inquiry About Marble Countertop Availability
+              </h4>
+            </div>
+
+            {/* Content Section */}
+            <div className="p-8 pt-6 text-[#050F24] leading-relaxed space-y-4">
+              <p>
+                Good day! I’m interested in your Calacatta Gold Marble Countertop. I saw it listed 
+                under your Stone Collection, but I’d like to ask if it’s still available for a 
+                3-meter kitchen installation. Could you please provide the following details:
+              </p>
               <ul className="list-disc ml-6 space-y-1">
-                <li>Lorem ipsum dolor sit amet</li>
-                <li>Lorem ipsum dolor sit amet</li>
-                <li>Lorem ipsum dolor sit amet</li>
+                <li>Current stock availability</li>
+                <li>Estimated lead time for delivery</li>
+                <li>Pricing per linear meter</li>
               </ul>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              <p>Looking forward to your response.</p>
             </div>
           </div>
         </div>

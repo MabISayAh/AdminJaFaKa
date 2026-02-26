@@ -17,7 +17,6 @@ const InquiryManagement: React.FC = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const navigate = useNavigate();
 
-  // Mock data tailored for the Inquiries page
   const inquiries: Inquiry[] = [
     { id: '1', customerName: 'Aliyah Segovia', customerEmail: 'asegovia@gmail.com', date: '10 Oct, 2025', contact: '09123456789', status: 'New' },
     { id: '2', customerName: 'Maverick Verdida', customerEmail: 'mverdida@gmail.com', date: '10 Oct, 2025', contact: '09123456789', status: 'In Progress' },
@@ -88,7 +87,7 @@ const InquiryManagement: React.FC = () => {
         </div>
       </div>
 
-      {/* 2. Messages Header Card */}
+      {/* Messages Header */}
       <div className="bg-white rounded-3xl border border-[#E1E1E1] shadow-sm p-8">
         <div className="flex justify-between items-start mb-8">
           <div>
@@ -138,7 +137,7 @@ const InquiryManagement: React.FC = () => {
         </div>
 
         <div className="mt-8 border border-gray-200 rounded-[32px] pb-8 pt-8 pl-0 pr-0 shadow-sm bg-white">
-        {/* 3. Inquiries Table */}
+        {/* Inquiries Table */}
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
@@ -180,7 +179,8 @@ const InquiryManagement: React.FC = () => {
             </tbody>
           </table>
         </div>
-        {/* 4. Pagination Section */}
+        
+        {/* Pagination Section */}
         <div className="flex flex-col sm:flex-row justify-between items-center mt-auto pt-6 px-6 gap-4 border-t border-gray-100">
           <span className="text-xs font-normal text-[#6F757E]">
             Showing 7 of 7 inquiries

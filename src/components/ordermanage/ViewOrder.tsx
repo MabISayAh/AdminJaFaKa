@@ -15,7 +15,7 @@ const ViewOrder: React.FC = () => {
   const [currentStatus, setCurrentStatus] = useState('Pending');
 
   const statusOptions = ['Pending', 'Processing', 'Paid', 'Completed', 'Refunded'];
-  
+
   const progress: Progress[] = [
     { label: 'Pending', date: '28 Sep, 2025', active: true },
     { label: 'Processing', date: '02 Oct, 2025', active: true },
@@ -28,8 +28,10 @@ const ViewOrder: React.FC = () => {
       {/* Header */}
       <div className="flex justify-between items-center mb-8 w-full">
         <div className="flex items-center gap-4">
-          <button onClick={() => navigate('/orders')}
-          className="p-1.5 hover:bg-gray-200 rounded-full transition-colors">
+          <button 
+            onClick={() => navigate('/orders')}
+            className="p-1.5 hover:bg-gray-200 rounded-full transition-colors"
+          >
             <ArrowLeft size={24} className="text-[#050F24]" />
           </button>
           <h1 className="text-xl font-semibold text-[#050F24]">View Order</h1>
@@ -37,11 +39,11 @@ const ViewOrder: React.FC = () => {
 
         <div className="flex items-center gap-2 ml-8">
           {/* Bell Button */}
-          <button 
+          <button
             onClick={() => setActiveButton(activeButton === 'bell' ? null : 'bell')}
             className={`p-1.5 rounded-full transition-all overflow-hidden ${
-              activeButton === 'bell' 
-                ? 'bg-[#DF2025] text-white' 
+              activeButton === 'bell'
+                ? 'bg-[#DF2025] text-white'
                 : 'text-[#050F24] hover:bg-gray-200'
             }`}
           >
@@ -49,11 +51,11 @@ const ViewOrder: React.FC = () => {
           </button>
 
           {/* User Button */}
-          <button 
+          <button
             onClick={() => setActiveButton(activeButton === 'user' ? null : 'user')}
             className={`p-1.5 rounded-full transition-all overflow-hidden ${
-              activeButton === 'user' 
-                ? 'bg-[#DF2025] text-white' 
+              activeButton === 'user'
+                ? 'bg-[#DF2025] text-white'
                 : 'text-[#050F24] hover:bg-gray-200'
             }`}
           >
@@ -64,7 +66,7 @@ const ViewOrder: React.FC = () => {
 
       {/* 2. Main Content Container */}
       <div className="bg-white rounded-3xl border border-[#E1E1E1] shadow-sm p-8">
-        
+
         {/* Status Dropdown & Icons */}
         <div className="flex justify-between items-start mb-6">
           <div>
@@ -88,14 +90,10 @@ const ViewOrder: React.FC = () => {
           <div className="flex items-center gap-4">
             {/* Status Dropdown */}
             <div className="relative">
-              <button 
+              <button
                 onClick={() => setIsStatusOpen(!isStatusOpen)}
                 className={`flex items-center justify-between w-45 px-6 py-2 border-2 border-[#DF2025] rounded-full font-normal hover:bg-[#DF2025] hover:text-white transition-colors overflow-hidden 
-                  ${
-                  isStatusOpen 
-                    ? 'bg-[#DF2025] text-white' 
-                    : 'text-[#DF2025]'
-                }`}
+                  ${isStatusOpen ? 'bg-[#DF2025] text-white' : 'text-[#DF2025]'}`}
               >
                 {currentStatus}
                 <div className="flex flex-col scale-75">
@@ -106,9 +104,9 @@ const ViewOrder: React.FC = () => {
               {isStatusOpen && (
                 <div className="absolute right-0 mt-2 w-45 bg-white border border-gray-100 rounded-2xl shadow-xl z-50 overflow-hidden">
                   {statusOptions.map((status) => (
-                    <button 
+                    <button
                       key={status}
-                      className={`w-full text-left px-6 py-3 text-sm hover:bg-gray-50 text-[#6F757E] hover:text-[#DF2025]`}
+                      className="w-full text-left px-6 py-3 text-sm hover:bg-gray-50 text-[#6F757E] hover:text-[#DF2025]"
                       onClick={() => { setCurrentStatus(status); setIsStatusOpen(false); }}
                     >
                       {status}
@@ -127,10 +125,10 @@ const ViewOrder: React.FC = () => {
           {/* Progress Track */}
           <div className="absolute top-[49px] left-[10%] right-[10%] h-4 flex items-center">
             <div className="absolute w-full h-[2px] bg-white/20" />
-            <div 
-              className="absolute h-[2px] bg-white transition-all duration-500 ease-in-out" 
-              style={{ 
-                width: `${(progress.filter(p => p.active).length - 1) / (progress.length - 1) * 100}%` 
+            <div
+              className="absolute h-[2px] bg-white transition-all duration-500 ease-in-out"
+              style={{
+                width: `${(progress.filter(p => p.active).length - 1) / (progress.length - 1) * 100}%`
               }}
             />
           </div>
@@ -138,12 +136,11 @@ const ViewOrder: React.FC = () => {
           {progress.map((step, idx) => (
             <div key={idx} className="relative z-20 flex flex-col items-center text-center w-24">
               <div className={`w-4 h-4 rounded-full mb-4 z-30 transition-all duration-500 ${
-                step.active ? 'bg-white' : 'bg-[#e55357]' 
+                step.active ? 'bg-white' : 'bg-[#e55357]'
               }`} />
-              
+
               <div className={`transition-opacity duration-500 ${step.active ? 'opacity-100' : 'opacity-50'}`}>
                 <p className="font-semibold text-base whitespace-nowrap">{step.label}</p>
-                {/* Papakita lang yung date pag :active */}
                 {step.active && (
                   <p className="text-[12px] mt-1 opacity-80">{step.date}</p>
                 )}
@@ -152,8 +149,9 @@ const ViewOrder: React.FC = () => {
           ))}
         </div>
 
+        {/* Lower Content Card */}
         <div className="bg-white rounded-3xl border border-gray-200 shadow-sm p-8 pt-20 pb-3">
-        
+
           {/* Billing Info */}
           <h3 className="text-lg font-semibold text-[#050F24] mb-4">Billing Information</h3>
           <div className="bg-white rounded-3xl p-6 border border-gray-200 shadow-sm relative mb-8">
@@ -257,12 +255,16 @@ const ViewOrder: React.FC = () => {
             </div>
           </div>
         </div>
-          {/* Cancel Button */}
-            <div className="flex justify-end pt-8">
-              <button onClick={() => navigate('/orders')} className="flex items-center justify-center gap-3 bg-[#DF2025] w-45 h-11 text-white px-6 py-3 rounded-full font-normal hover:bg-[#b3191d] transition-colors">
-                Cancel Order
-              </button>
-            </div>
+
+        {/* Cancel Button */}
+        <div className="flex justify-end pt-8">
+          <button
+            onClick={() => navigate('/orders')}
+            className="flex items-center justify-center gap-3 bg-[#DF2025] w-45 h-11 text-white px-6 py-3 rounded-full font-normal hover:bg-[#b3191d] transition-colors"
+          >
+            Cancel Order
+          </button>
+        </div>
       </div>
     </div>
   );

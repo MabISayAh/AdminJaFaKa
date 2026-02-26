@@ -19,7 +19,7 @@ const ProductManagement: React.FC = () => {
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
   const [isStatusOpen, setIsStatusOpen] = useState(false);
 
-  // Mock Data matching the Product List design
+  // Mock Data
   const products: Product[] = [
     { id: '1', name: 'Product Name', type: 'Product Type', suk: 'EL-00552', status: 'Out of Stock', price: 130, category: 'Category', stock: 0 },
     { id: '2', name: 'Product Name', type: 'Product Type', suk: 'EL-00551', status: 'In Stock', price: 45, category: 'Category', stock: 504 },
@@ -90,7 +90,7 @@ const ProductManagement: React.FC = () => {
         </div>
       </div>
 
-      {/* 3. Product Management Card */}
+      {/* Product Management Card */}
       <div className="bg-white rounded-3xl border border-[#E1E1E1] shadow-sm p-8">
         <div className="flex justify-between items-start mb-8">
           <div>
@@ -166,7 +166,7 @@ const ProductManagement: React.FC = () => {
         </div>
 
         <div className="mt-8 border border-gray-200 rounded-[32px] pb-8 pt-8 pl-0 pr-0 shadow-sm bg-white">
-        {/* 4. Products Table */}
+        {/* Products Table */}
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
@@ -204,7 +204,7 @@ const ProductManagement: React.FC = () => {
           </table>
         </div>
 
-        {/* 5. Pagination */}
+        {/* Pagination */}
         <div className="flex flex-col sm:flex-row justify-between items-center mt-auto pt-6 px-6 gap-4 border-t border-gray-100">
           <span className="text-xs font-normal text-[#6F757E]">
             Showing 7 of 7 products

@@ -1,15 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { 
-  Home, 
-  Package, 
-  List, 
-  Layout, 
-  TrendingUp, 
-  MessageSquare, 
-  Users, 
-  Settings 
-} from 'lucide-react';
+import { Home, Package, List, Layout, TrendingUp, MessageSquare, Users, Settings } from 'lucide-react';
 
 interface MenuItem {
   icon: React.ReactNode;
@@ -34,8 +25,6 @@ const Sidebar: React.FC = () => {
   ];
 
   return (
-
-    
     <aside 
       className={`fixed left-0 top-0 h-full bg-white transition-all duration-300 ease-in-out z-50 shadow-lg overflow-hidden ${isExpanded ? 'w-55' : 'w-20'}`}
       onMouseEnter={() => setIsExpanded(true)}
